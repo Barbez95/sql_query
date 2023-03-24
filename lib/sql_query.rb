@@ -78,7 +78,10 @@ class SqlQuery
   def prepare_query(for_logs)
     query_template = File.read(file_path)
     query_template = query_template.gsub(/(\n|\s)+/, ' ') if for_logs
-    ERB.new(query_template).result(binding)
+    puts "query_template: #{query_template}"
+    result = ERB.new(query_template).result(binding)
+    puts "result: #{result}"
+    result
   end
 
   def split_to_path_and_name(file)
